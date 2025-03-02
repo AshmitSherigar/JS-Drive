@@ -1,22 +1,41 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  /* background-color:#000; */
+  color:#fff; 
+  font-family: 'Oswald';
+
+}
 .box{
     height: 60vh;
     width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid black;
+    border: 1px solid white;
     /* padding: 20px; */
     top: 50%;
     left: 50%;
     transform: translate(35%,35%);
     border-radius: 20px;
     overflow: hidden;
+    /* background-color: #2e333b; */
+    
 }
 .image-box{
     border: 2px solid black;
     height: 100%;
     width: 50%;
     position: relative;
+    transform-origin: end;
+    transition: all ease 0.2s;
     
     /* padding: 0px; */
 }
@@ -30,6 +49,36 @@
     position: absolute;
     top: 0;
     left: 0;
+    padding: 40px;
+     
+
+}
+.image-box:hover{
+
+    transform: rotateY(20deg) translateX(18px);
+}
+.timestamp h1{
+    font-size: 50px;
+}
+.timestamp h2{
+    font-size: 30px;
+}
+.details{
+    
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-direction: column;
+}
+.details i{
+    font-size: 80px;
+    
+}
+.details h4{
+    font-size: 30px;
+}
+.date i{
+    font-size: 30px;
 }
 .image-box img{
     height: 100%;
@@ -51,11 +100,16 @@
     background-color: #2e333b;
 
 }
+.report{
+    padding-bottom: 70px;
+    display: flex;
+}
 .dates {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0px 30px;
+    padding-left:80px;
 }
 
 .date {
