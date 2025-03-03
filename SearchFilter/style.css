@@ -1,0 +1,103 @@
+/* CSS BoilerPlate */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+
+
+}
+.container{
+    height: 100%;
+    width: 100%;
+}
+.nav{
+    height: 8vh;
+    width: 100%;
+    /* background: red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+.nav a{
+    text-transform: none;
+    text-decoration: none;
+    color: black;
+}
+.nav-content1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.nav-content2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.profile{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%; 
+    background: #000;
+}
+
+.logo h1{
+    font-size: 100px;
+    top: 10%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+}
+
+
+.search-filter #search{
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%,-50%);
+    height: 5vh;
+    width: 40vw;
+    font-size: 25px;
+    padding: 30px;
+    border-radius: 25px;
+}
+#search:focus{
+    border: #000 2px solid; 
+    background-color: #f7f5f5;
+}
+.display-area{
+    left: 10%;
+    top: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ul{
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.card{
+    height: 22vh;
+    width: 12vw;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+}
+.card p{
+    text-align: center;
+}
