@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
     <link rel="stylesheet" href="style.css">
     <title>BuBul</title>
 </head>
@@ -13,7 +14,7 @@
         <div class="nav">
             <div class="nav-content1">
                 <h4><a href="#">About Us</a></h4>
-                <h4>Switch Theme</h4>
+                <h4 id="switch">Switch Theme</h4>
             </div>
             <div class="nav-content2">
                 <h4><a href="#">Contact Us</a></h4>
@@ -25,91 +26,24 @@
         </div>
         <div class="search-filter">
             <input type="input" name="search" id="search" oninput="updateText()">
+            <div class="icon_container">
+                <span class="material-symbols-outlined" id="search_icon" title="search">
+                    search
+                </span>
+                <div class="icon_phase">
+                    <span class="material-symbols-outlined" id="voice_chat" title="voice chat">
+                        voice_chat
+                    </span>
+                    <span class="material-symbols-outlined" id="image_search" title="image seach">
+                        image_search
+                    </span>
+
+                </div>
+
+            </div>
         </div>
         <div class="display-area">
             <ul>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        <h1>Name</h1>
-                        <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, pariatur.</p>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
@@ -117,4 +51,5 @@
 </body>
 
 <script src="script.js"></script>
+
 </html>
