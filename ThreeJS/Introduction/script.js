@@ -1,4 +1,4 @@
-// import * as THREE from 'https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,1000);
@@ -10,19 +10,20 @@ scene.add(cube);
 
 camera.position.z = 4;
 
-const canvas = document.querySelector("#draw");
+// const canvas = document.querySelector("#draw");
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth,window.innerHeight);
-// document.body.appendChild( renderer.domElement );    
+document.body.appendChild( renderer.domElement );    
 
-const clock = new THREE.Clock()
+// const clock = new THREE.Clock()
 function animate() {
 
     window.requestAnimationFrame(animate)
 	renderer.render( scene, camera );
-    cube.rotation.x += clock.getElapsedTime() * 0.001;
-    cube.rotation.y += clock.getElapsedTime()*0.001;
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+
 }
 animate();
 // renderer.setAnimationLoop( animate );
