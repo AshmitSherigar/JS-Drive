@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Product Viewer</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="display"></div>
+        <div class="controls">
+            <div class="control-box">
+                <button id="rotateX">Rotate X</button>
+                <button id="rotateY">Rotate Y</button>
+                <button id="rotateZ">Rotate Z</button>
+            </div>
+            <div class="control-box">
+                <input id="colorInput" type="text" placeholder="Enter a Valid Colour:" oninput="runInput()">
+                <button id="clearColor" onclick="clearColor()">Clear Color</button>
+            </div>
+            <div class="control-box">
+                <button id="switchModel" onclick="switchModel()">Switch Model</button>
+            </div>
+            <div class="control-box">
+                <button id="playAnimation" onclick="playAnimation('start')">Play Animation</button>
+                <button id="playAnimation" onclick="playAnimation('stop')">Stop Animation</button>
+
+            </div>
+            <div class="control-box">
+                <button id="saveImage">Save as Image</button>
+            </div>
+
+        </div>
+        <!-- <div class="design"></div> -->
+    </div>
+    <!-- <script type="module" src="https://cdn.jsdelivr.net/npm/three@latest/examples/jsm/controls/OrbitControls.js"></script> -->
+    <script type="module" src="./src/script.js"></script>
+</body>
+
+</html>
