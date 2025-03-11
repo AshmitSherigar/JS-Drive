@@ -1,4 +1,5 @@
 /* CSS BoilerPlate */
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Sigmar&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +9,7 @@
 html, body {
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 .container{
     height: 100%;
@@ -15,28 +17,37 @@ html, body {
 
     display: grid;
     grid-template-columns: 70vw 30vw;
-    grid-template-rows: 80vh 20vh;
+    grid-template-rows: 80vh 26vh;
     /* flex-direction: column; */
 }
 
 .display{
 
-    background-color: red;
+    /* background-color: red; */
+    border: 1px solid white;
 }
 .design{
     grid-column: 1/3;
-    background-color: blue;
+    background-color: rgb(16, 16, 16);
+    font-size: 16px;
+    /* padding: 5px; */
+    font-family: 'Sigmar';
+    color: white;
+    border: 1px solid white;
 }
 .controls{
-    /* background-color: green; */
+    background-color: black;
     display: flex;
     flex-direction: column;
+    border: 2px solid white;
+
+    
 }
 .control-box{
     /* background-color: #f3aaaa; */
     height: 40vh;
     width: 30vw;
-    border: 1px solid black;
+    border: 1px solid white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,6 +64,7 @@ button:active{
 input{
     padding:10px 10px;
     font-size: 30px;
+    border-radius: 10px;
 }
 .input:focus{
     border: 2px solid black;

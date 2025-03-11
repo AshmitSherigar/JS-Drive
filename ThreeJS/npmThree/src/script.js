@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { FlyControls } from 'three/examples/jsm/controls/FlyControls.js';
+
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
@@ -39,6 +42,14 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.01
 
+// import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
+// const controls = new PointerLockControls(camera, document.body);
+// document.addEventListener("click", () => controls.lock());
+
+// const controls = new FlyControls(camera, renderer.domElement);
+// controls.movementSpeed = 5;
+// controls.rollSpeed = 0.5;
+
 // Create a simple box geometry
 // const geometry = new THREE.BoxGeometry(1.4, 1.3, 1);
 // const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
@@ -59,3 +70,4 @@ function animate() {
     controls.update();
 }
 animate();
+
