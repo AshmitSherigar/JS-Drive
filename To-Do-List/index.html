@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        width: 350px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .entry-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #218838;
+      }
+
+      .to-do-list {
+        margin-top: 15px;
+      }
+
+      .task-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .task-item p {
+        margin: 0;
+      }
+
+      .deleteBtn {
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .deleteBtn:hover {
+        background: darkred;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>To-Do List</h2>
+      <div class="entry-list">
+        <input class="text-entry" type="text" placeholder="Enter a task" />
+        <input class="date-entry" type="date" />
+        <button class="addBtn">Add Task</button>
+      </div>
+      <div class="to-do-list"></div>
+    </div>
+
+    <script>
+      const textInput = document.querySelector(".text-entry");
+      const dateInput = document.querySelector(".date-entry");
+      const addButton = document.querySelector(".addBtn");
+      const listDiv = document.querySelector(".to-do-list");
+
+      document.addEventListener("DOMContentLoaded", loadEvent);
+
+      addButton.addEventListener("click", () => {
+        const textValue = textInput.value.trim();
+        const dateValue = dateInput.value.trim();
+        textInput.value = "";
+        dateInput.value = "";
+
+        if (textValue === "" || dateValue === "") {
+          alert("Something is Missing!!!");
+          return;
+        }
+
+        const task = { text: textValue, date: dateValue };
+
+        display_task(task); 
+
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.push(task);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      });
+
+      function display_task(task) {
+        const div = document.createElement("div");
+        div.classList.add("task-item");
+
+        const pText = document.createElement("p");
+        const pDate = document.createElement("p");
+
+        pText.classList.add("pText");
+        pDate.classList.add("pDate");
+        pText.innerText = task.text;
+        pDate.innerText = task.date;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("deleteBtn");
+        deleteBtn.innerText = "Delete Task";
+
+        div.appendChild(pText);
+        div.appendChild(pDate);
+        div.appendChild(deleteBtn);
+        listDiv.appendChild(div);
+
+        deleteBtn.addEventListener("click", () => {
+          listDiv.removeChild(div);
+          removeTaskFromStorage(task);
+        });
+      }
+
+      function loadEvent() {
+        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.forEach(display_task); 
+      }
+
+      function removeTaskFromStorage(taskToRemove) {
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks = tasks.filter(
+          (task) =>
+            task.text !== taskToRemove.text || task.date !== taskToRemove.date
+        );
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+    </script>
+  </body>
+</html>
