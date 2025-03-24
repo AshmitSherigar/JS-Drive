@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("clearBtn").addEventListener("click", clearHandle);
 
-  // Step 2: Convert inputs into a 2D board
+  
   function getBoard() {
     board.length = 0;
     for (let i = 0; i < 9; i++) {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return board;
   }
 
-  // Step 3: Find the first empty cell
+  
   function findEmptyCell(board) {
     for (let row = 0; row < 9; row++) {
       for (let col = 0; col < 9; col++) {
@@ -48,10 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-    return null; // No empty cell found
+    return null; 
   }
 
-  // Step 4: Check if a number is valid in a cell
+ 
   function isValid(board, num, row, col) {
     // Check Row
     for (let i = 0; i < 9; i++) {
@@ -72,32 +72,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    return true; // Number is valid
+    return true; 
   }
 
-  // Step 5: Solve Sudoku using Backtracking
+  
   function solveSudoku(board) {
     let empty = findEmptyCell(board);
-    if (!empty) return true; // No empty cells left, puzzle is solved
+    if (!empty) return true; 
 
     let { row, col } = empty;
 
     for (let num = 1; num <= 9; num++) {
       let strNum = num.toString();
       if (isValid(board, strNum, row, col)) {
-        board[row][col] = strNum; // Place number
+        board[row][col] = strNum; 
 
-        if (solveSudoku(board)) return true; // Move to next empty cell
+        if (solveSudoku(board)) return true; 
 
-        board[row][col] = "0"; // Reset cell (backtrack)
+        board[row][col] = "0";
       }
     }
 
-    window.alert("This Is A Error YOU HAVE CRASHED THE SITE.");
-    return false; // No solution found
+    
+    return false; 
   }
 
-  // Step 6: Display the solved Sudoku in the UI
   function updateBoardUI(board) {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -107,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Step 7: Solve and Display Solution
+
   function handleSolve() {
     let boardData = getBoard();
     if (solveSudoku(boardData)) {
