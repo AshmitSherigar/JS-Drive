@@ -1,105 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #282c36;
-            color: white;
-            padding: 20px;
-        }
-        h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .buttons {
-            margin: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            opacity: 0.8;
-            transform: scale(0.99);
-        }
-        .rock { background-color: #ff4757; color: white; }
-        .paper { background-color: #1e90ff; color: white; }
-        .scissors { background-color: #2ed573; color: white; }
-        .reset { background-color: #ffcc00; color: black; }
-        
-        #result {
-            font-size: 20px;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-        #score {
-            font-size: 18px;
-            margin-top: 10px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #282c36;
+        color: white;
+        padding: 20px;
+      }
+      .main {
+        margin: 0 auto;
+        height: 50vh;
+        width: 40vw;
+        background-color: #272c3a;
+        box-shadow: 1px 1px 30px rgb(255, 255, 255);
+      }
+      h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .buttons {
+        margin: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      button:hover {
+        opacity: 0.8;
+        transform: scale(0.99);
+      }
+      .rock {
+        background-color: #ff4757;
+        color: white;
+      }
+      .paper {
+        background-color: #1e90ff;
+        color: white;
+      }
+      .scissors {
+        background-color: #2ed573;
+        color: white;
+      }
+      .reset {
+        background-color: #ffcc00;
+        color: black;
+      }
+      .auto {
+        background-color: #00eeff;
+        color: black;
+      }
+
+      #result {
+        font-size: 20px;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+      #score {
+        font-size: 18px;
+        margin-top: 10px;
+      }
     </style>
-</head>
-<body>
-    <h3>Rock Paper Scissors</h3>
-    <div class="buttons">
+  </head>
+  <body>
+    <div class="main">
+      <h3>Rock Paper Scissors</h3>
+      <div class="buttons">
         <button class="rock" onclick="playGame('Rock')">✊ Rock</button>
         <button class="paper" onclick="playGame('Paper')">✋ Paper</button>
-        <button class="scissors" onclick="playGame('Scissors')">✌️ Scissors</button>
+        <button class="scissors" onclick="playGame('Scissors')">
+          ✌️ Scissors
+        </button>
+        <br />
         <button class="reset" onclick="resetScore()">🔄 Reset</button>
+        <button class="auto" onclick="autoPlay()">▶️ Auto Play</button>
+      </div>
+      <p id="result"></p>
+      <p id="score">Wins: 0, Losses: 0, Ties: 0</p>
     </div>
-    <p id="result"></p>
-    <p id="score">Wins: 0, Losses: 0, Ties: 0</p>
 
     <script>
-        let score = JSON.parse(localStorage.getItem("rpsScore")) || { wins: 0, losses: 0, ties: 0 };
-        
-        function updateScoreDisplay() {
-            document.getElementById("score").innerText = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+      let score = JSON.parse(localStorage.getItem("rpsScore")) || {
+        wins: 0,
+        losses: 0,
+        ties: 0,
+      };
+
+      function updateScoreDisplay() {
+        document.getElementById(
+          "score"
+        ).innerText = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+      }
+      updateScoreDisplay();
+
+      function playGame(playerChoice) {
+        const choices = ["Rock", "Paper", "Scissors"];
+        const emojiMap = { Rock: "✊", Paper: "✋", Scissors: "✌️" };
+        const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+        let result = "";
+        if (playerChoice === computerChoice) {
+          result = "It's a Tie!";
+          score.ties++;
+        } else if (
+          (playerChoice === "Rock" && computerChoice === "Scissors") ||
+          (playerChoice === "Paper" && computerChoice === "Rock") ||
+          (playerChoice === "Scissors" && computerChoice === "Paper")
+        ) {
+          result = "You Win!";
+          score.wins++;
+        } else {
+          result = "Computer Wins!";
+          score.losses++;
         }
+
+        localStorage.setItem("rpsScore", JSON.stringify(score));
         updateScoreDisplay();
 
-        function playGame(playerChoice) {
-            const choices = ["Rock", "Paper", "Scissors"];
-            const emojiMap = { "Rock": "✊", "Paper": "✋", "Scissors": "✌️" };
-            const computerChoice = choices[Math.floor(Math.random() * 3)];
-            
-            let result = "";
-            if (playerChoice === computerChoice) {
-                result = "It's a Tie!";
-                score.ties++;
-            } else if (
-                (playerChoice === "Rock" && computerChoice === "Scissors") ||
-                (playerChoice === "Paper" && computerChoice === "Rock") ||
-                (playerChoice === "Scissors" && computerChoice === "Paper")
-            ) {
-                result = "You Win!";
-                score.wins++;
-            } else {
-                result = "Computer Wins!";
-                score.losses++;
-            }
-            
-            localStorage.setItem("rpsScore", JSON.stringify(score));
-            updateScoreDisplay();
-            
-            document.getElementById("result").innerText = `${emojiMap[playerChoice]} vs ${emojiMap[computerChoice]} - ${result}`;
-        }
+        document.getElementById(
+          "result"
+        ).innerText = `${emojiMap[playerChoice]} vs ${emojiMap[computerChoice]} - ${result}`;
+      }
 
-        function resetScore() {
-            score = { wins: 0, losses: 0, ties: 0 };
-            localStorage.setItem("rpsScore", JSON.stringify(score));
-            updateScoreDisplay();
-            document.getElementById("result").innerText = "";
+      function resetScore() {
+        score = { wins: 0, losses: 0, ties: 0 };
+        localStorage.setItem("rpsScore", JSON.stringify(score));
+        updateScoreDisplay();
+        document.getElementById("result").innerText = "";
+        clearInterval(autoInterval);
+      }
+      function autoPlay() {
+        const choices = ["Rock", "Paper", "Scissors"];
+
+        autoInterval = setInterval(() => {
+          const playerMove = choices[Math.floor(Math.random() * 3)];
+
+          playGame(playerMove);
+        }, 1000);
+      }
+
+      document.body.addEventListener("keydown", (e) => {
+        if (e.key == "r") {
+          playGame("Rock");
+        } else if (e.key == "p") {
+          playGame("Paper");
+        } else if (e.key == "s") {
+          playGame("Scissors");
         }
+      });
     </script>
-</body>
+  </body>
 </html>

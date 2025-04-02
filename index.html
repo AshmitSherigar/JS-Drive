@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message App</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: #fff;
+      color: #000;
+      height: 100vh;
+      width: 100%;
+    }
+    div {
+      height: 100%;
+      width: 100%;
+      background-color: #eeeeee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 20px;
+    }
+    button {
+      /* margin: 0 auto; */
+      padding: 15px 40px;
+      border-radius: 10px;
+      text-transform: uppercase;
+    }
+    button:active {
+      scale: 0.99;
+    }
+  </style>
+  <body>
+    <div>
+      <button id="send">send</button>
+      <button id="delete">delete</button>
+    </div>
+    <script>
+      const sendBtn = document.querySelector("#send");
+      const deleteBtn = document.querySelector("#delete");
+      let counter = 0;
+      function checkZero() {
+        if (counter <= 0) {
+          counter = 0;
+          return 0;
+        } else {
+          return 1;
+        }
+      }
+      sendBtn.addEventListener("click", () => {
+        counter++;
+
+        if (checkZero()) {
+          document.title = `(${counter}) Messages`;
+          setTimeout(() => {
+            document.title = "Message App";
+          }, 2500);
+        } else {
+          document.title = `No Messages`;
+          setTimeout(() => {
+            document.title = "Message App";
+          }, 2500);
+        }
+      });
+      deleteBtn.addEventListener("click", () => {
+        counter--;
+        if (checkZero()) {
+          document.title = `(${counter}) Messages`;
+          setTimeout(() => {
+            document.title = "Message App";
+          }, 2500);
+        } else {
+          document.title = `No Messages`;
+          setTimeout(() => {
+            document.title = "Message App";
+          }, 2500);
+        }
+      });
+      /*
+
+      my_array = [1, 2, -3, 4, 6, -3, -10];
+
+      let filteredArray = my_array.filter((value) => value >= 0);
+
+      console.log(filteredArray); 
+      
+      
+      
+      
+      */
+
+
+    //  my_array = [1, 2, -3, 4, 6, -3, -10];
+     
+    //  let filteredArray = my_array.map((value) => value * 2);
+     
+    //  console.log(filteredArray); 
+
+
+
+    // closure - if a function has access to a value it will always have access to that value
+     </script>
+  </body>
+</html>
