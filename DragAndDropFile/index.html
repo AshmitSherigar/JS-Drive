@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drag & Drop File Upload</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f9f9f9;
+    }
+
+    .drop-zone {
+      width: 350px;
+      height: 200px;
+      border: 2px dashed #aaa;
+      border-radius: 12px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #666;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .drop-zone.dragover {
+      background-color: #e3f2fd;
+      border-color: #2196f3;
+      color: #2196f3;
+    }
+
+    .preview {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .preview img {
+      max-width: 200px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <div class="drop-zone" id="drop-zone">
+      <p>Drag & drop your file here<br>or click to upload</p>
+      <input type="file" id="fileInput" hidden />
+    </div>  
+    <div class="preview" id="preview"></div>
+  </div>
+
+  <script>
+    const dropZone = document.getElementById("drop-zone");
+    const fileInput = document.getElementById("fileInput");
+    const preview = document.getElementById("preview");
+
+    // Click opens file dialog
+    dropZone.addEventListener("click", () => {
+      fileInput.click();
+    });
+
+    // File selected via input
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length) {
+        handleFile(fileInput.files[0]);
+      }
+    });
+
+    // Prevent default behavior on drag events
+    ["dragenter", "dragover", "dragleave", "drop"].forEach(evt => {
+      dropZone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    });
+
+    // Highlight drop zone on dragover
+    ["dragenter", "dragover"].forEach(evt => {
+      dropZone.addEventListener(evt, () => {
+        dropZone.classList.add("dragover");
+      });
+    });
+
+    // Remove highlight on dragleave/drop
+    ["dragleave", "drop"].forEach(evt => {
+      dropZone.addEventListener(evt, () => {
+        dropZone.classList.remove("dragover");
+      });
+    });
+
+    // File dropped
+    dropZone.addEventListener("drop", (e) => {
+      const files = e.dataTransfer.files;
+      if (files.length) {
+        handleFile(files[0]);
+      }
+    });
+
+    // Handle the file (preview or upload)
+    function handleFile(file) {
+      preview.innerHTML = `<strong>Selected:</strong> ${file.name}`;
+
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = document.createElement("img");
+          img.src = reader.result;
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+
+</body>
+</html>
